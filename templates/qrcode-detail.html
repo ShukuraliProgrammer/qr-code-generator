@@ -1,0 +1,25 @@
+{% extends 'base.html' %} 
+{% block content %} 
+
+<div style="width: 800px; text-align: center; margin:10px auto">
+   
+    <div class="card text-center">
+       
+ 
+       <div class="card-body">
+         <h5 class="card-title"><a href="{{qr.url}}">{{qr.url}}</a></h5>
+         <img style=" width:150px; height: 120px;" src="{{qr.image.url}}"/><br><br>
+         
+         <a class="btn btn-success"  href="{{qr.image.url}}" download>
+          Download
+         </a>
+         <a href="{% url 'QrCode' %}" class="btn btn-primary">Qr code list</a>
+       </div>
+       <div>Skaner qilib olindi: {{qr.url_counter}}</div>
+       <div class="card-footer text-muted"> Yaratilga sana: 
+         {{qr.created_at|date:"Y-m-d"}}
+       </div>
+     
+     </div>
+ </div>
+{% endblock %} 
