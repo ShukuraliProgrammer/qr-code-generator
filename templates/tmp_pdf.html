@@ -1,0 +1,208 @@
+{% load static %}
+{% block content %} 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Pdf</title>
+    <link rel="stylesheet" href="{% static 'scss/pdf-main.css' %}">
+</head>
+<body>
+<div class="container">
+    <div class="left-side">
+        <div class="header-input">
+            <div class="icon"><img src="{% static 'icons/megaphone.png' %}" alt="icon"></div>
+            <input type="text" placeholder="Name your QR Code...">
+        </div>
+        <div class="upload">
+            <div class="header-title">
+                <div class="icon">
+                    <img src="{% static 'icons/design.png' %}" alt="icon">
+                </div>
+                <div class="text">
+                    <h3>Upload PDF</h3>
+                </div>
+            </div>
+            <div class="pdf-content">
+                <div class="title">
+                    <p>
+                        Select any PDF from your computer.
+                    </p>
+                </div>
+                <div class="body">
+                    <div class="upload-image">
+                        <p>Upload a PDF file (up to 20MB)</p>
+                        <input type="file" id="upload-pdf" hidden class="file-input">
+                        <label for="upload-pdf">Upload PDF</label>
+                    </div>
+                    <!--                    <div class="change-button">-->
+                    <!--                        <button>-->
+                    <!--                            <img src="assets/icons/exchange.png" alt="icon">-->
+                    <!--                            Change-->
+                    <!--                        </button>-->
+                    <!--                        <a href="#">Preview</a>-->
+                    <!--                    </div>-->
+                </div>
+            </div>
+        </div>
+        <div class="design-customizations">
+            <div class="header-title">
+                <div class="icon">
+                    <img src="{% static 'icons/design.png' %}" alt="icon">
+                </div>
+                <div class="text">
+                    <h3>Design & Customizations</h3>
+                </div>
+            </div>
+            <div class="choose-color">
+                <div class="title">
+                    <p>
+                        Choose a color theme and upload an image for your Social Media page.
+                    </p>
+                </div>
+                <div class="colors">
+                    <p>Colors:</p>
+                    <div class="color-card">
+                        <button onclick="changeColor(color1='#447fb6',color2='#e91e63')" class="first-card">
+                            <div class="box"></div>
+                            <div class="circle"></div>
+                        </button>
+                        <button onclick="changeColor(color1='#455a64',color2='#e91e63')" class="second-card">
+                            <div class="box"></div>
+                            <div class="circle"></div>
+                        </button>
+                        <button onclick="changeColor(color1='#d32f2f',color2='#ef9a9a')" class="third-card">
+                            <div class="box"></div>
+                            <div class="circle"></div>
+                        </button>
+                        <button onclick="changeColor(color1='#4caf50',color2='#81c784')" class="forth-card">
+                            <div class="box"></div>
+                            <div class="circle"></div>
+                        </button>
+                        <button onclick="changeColor(color1='#795548',color2='#ff8a65')" class="fifth-card">
+                            <div class="box"></div>
+                            <div class="circle"></div>
+                        </button>
+                    </div>
+                </div>
+                <div class="upload-color">
+                    <div class="primary">
+                        <p>Primary</p>
+                        <div class="card">
+                            <input class="code" type="text" id="change-first-value" value="#447fb6">
+                            <input class="color" type="color" id="change-second-value" value="#447fb6">
+                        </div>
+                    </div>
+                    <button class="change-button">
+                        <img src="{% static 'icons/arrows.png' %}" alt="icons">
+                    </button>
+                    <div class="button-color">
+                        <p>Button</p>
+                        <div class="card">
+                            <input class="code" type="text" id="change-button-color-1" value="#e91e63">
+                            <input class="color" type="color" id="change-button-color-2" value="#e91e63">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="basic-information">
+            <div class="header-title">
+                <div class="icon">
+                    <img src="{% static 'icons/design.png' %}" alt="icon">
+                </div>
+                <div class="text">
+                    <h3>Basic Information</h3>
+                </div>
+            </div>
+            <div class="content">
+                <div class="title">
+                    <p>Provide your business info and add some context to your PDF.</p>
+                </div>
+                <div class="headline">
+                    <p>Company:</p>
+                    <input type="text" placeholder="Name of company or PDF owner">
+                </div>
+                <div class="headline">
+                    <p>Title:</p>
+                    <input type="text" placeholder="Title or PDF name">
+                </div>
+                <div class="about-us">
+                    <p>Description:</p>
+                    <textarea name="text">
+                        Provide more info about your PDF
+                    </textarea>
+                </div>
+                <div class="headline">
+                    <p>Website:</p>
+                    <input type="text" placeholder="www.yourwebsite.com">
+                </div>
+            </div>
+        </div>
+        <div class="welcome-screen">
+            <div class="header-title">
+                <div class="icon">
+                    <img src="{% static 'icons/design.png' %}" alt="icon">
+                </div>
+                <div class="text">
+                    <h3>Welcome Screen</h3>
+                </div>
+            </div>
+            <div class="content">
+                <div class="title">
+                    <p>
+                        Display your logo while your page is loading.
+                    </p>
+                </div>
+                <div class="body">
+                    <div class="text">Image:</div>
+                    <div class="upload-image">
+                        <input type="file" id="upload-btn" hidden class="file-input">
+                        <label for="upload-btn"><img src="{% static 'icons/megaphone.png' %}" alt=""></label>
+                    </div>
+                    <div class="change-button">
+                        <button>
+                            <img src="{% static 'icons/exchange.png' %}" alt="icon">
+                            Change
+                        </button>
+                        <a href="#">Preview</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-side">
+        <div class="right-side-content">
+            <div class="buttons">
+                <button data-id="first-content" class="right-side-btn active">Preview</button>
+                <button data-id="second-content" class="right-side-btn">QR Code</button>
+            </div>
+            <div id="first-content" class="right-side-second-content active">
+                <div class="pdf-connect-text" id="change-color">
+                    <p>Biike Cycles, LLC</p>
+                    <h3>Catalogue 2.19 - Spring/Summer</h3>
+                    <p>Our new bikes for this season for riding in the city, mountains, and everything in between.</p>
+                </div>
+                <div class="pdf-img">
+                    <img src="{% static 'img/bike-v2.jpg' %}" alt="pdf-img">
+                </div>
+                <button class="view-button" id="change-color-btn">View PDF</button>
+            </div>
+            <div id="second-content" class="right-side-second-content">
+                <div class="qr-code-img">
+                    <img src="{% static 'img/Без%20названия.png' %}" alt="image">
+                </div>
+                <div class="qr-code-text">
+                    <h3>Scan this QR Code to preview</h3>
+                    <p>You can customize the design of your
+                        QR Code in the next step.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
+{% endblock content %}

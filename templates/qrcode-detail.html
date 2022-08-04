@@ -13,7 +13,9 @@
          <a class="btn btn-success"  href="{{qr.image.url}}" download>
           Download
          </a>
-         <a href="{% url 'QrCode' %}" class="btn btn-primary">Qr code list</a>
+         <a href="{% url 'qrcodes-list' %}" class="btn btn-primary">Qr code list</a>
+         <a href="{% url 'qrcode_delete' qr.id %}" class="btn btn-danger">Delete</a>  
+         
        </div>
        <div>Skaner qilib olindi: {{qr.url_counter}}</div>
        <div class="card-footer text-muted"> Yaratilga sana: 

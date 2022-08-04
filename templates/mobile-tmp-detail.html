@@ -1,0 +1,186 @@
+
+{% block content %} 
+
+<style>
+    .right-side {
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin:0;
+        padding: 0;
+        position: relative;
+    }
+
+    .right-side .right-side-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .right-side .right-side-content .right-side-second-content {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+
+    }
+
+    .right-side .right-side-content .right-side-second-content .header-img {
+        width: 100%;
+        filter: invert(42%) sepia(6%) saturate(4415%) hue-rotate(168deg) brightness(108%) contrast(90%);
+    }
+
+    .right-side .right-side-content .right-side-second-content .connect-text {
+        width: 100%;
+        height: 180px;
+        background-color: #447fb6;
+        color: #fff;
+        align-items: center;
+    }
+
+    .right-side .right-side-content .right-side-second-content .connect-text h3 {
+        width: 80%;
+        height: 50%;
+        font-size: 25px;
+        margin: 0 auto;
+        align-items: center;
+        padding-top: 10px;
+    }
+
+    .right-side .right-side-content .right-side-second-content .connect-text p {
+        width: 80%;
+        height: 50%;
+        font-size: 17px;
+        margin: 0 auto;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.67);
+    }
+
+    .right-side .right-side-content .right-side-second-content .social-links {
+        width: 100%;
+        height: 320px;
+        display: flex;
+        flex-direction: column;
+        background-color: #f4f4f4;
+    }
+
+    .right-side .right-side-content .right-side-second-content .social-links .card {
+        width: 100%;
+        border-bottom: 0.5px solid #a4a6a8;
+        height: 30%;
+        display: flex;
+    }
+
+    .right-side .right-side-content .right-side-second-content .social-links .card .web-icon {
+        filter: invert(26%) sepia(0%) saturate(2%) hue-rotate(344deg) brightness(100%) contrast(91%);
+    }
+
+    .right-side .right-side-content .right-side-second-content .social-links .card .icon {
+        width: 30%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .right-side .right-side-content .right-side-second-content .social-links .card .icon img {
+        width: 50px;
+    }
+
+    .right-side .right-side-content .right-side-second-content .social-links .card .text {
+        width: 70%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+        text-decoration: none;
+    }
+    .right-side .right-side-content .right-side-second-content .social-links .card .text:focus-visible{
+        outline-offset: 0;
+        outline: none;
+    }
+
+    .right-side .right-side-content .right-side-second-content .social-links .card .text h3 {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        font-size: 22px;
+        color: black;
+    }
+
+    .right-side .right-side-content .right-side-second-content .social-links .card .text p {
+        width: 100%;
+        font-size: 18px;
+        color: #a4a6a8;
+        margin: 0;
+        padding: 0;
+    }
+
+    .right-side .right-side-content .right-side-second-content .share-links {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        bottom: 6%;
+        right: 8%;
+        border-radius: 50%;
+        background-color: #e91e63;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 6px 20px 1px rgba(110, 109, 109, 0.82);
+        transition: all 300ms linear;
+    }
+    .right-side .right-side-content .right-side-second-content .share-links:hover{
+        transform: translateY(5%);
+        transition: all 300ms linear;
+        box-shadow: 0 6px 20px 1px rgba(233, 30, 99, 0.77);
+    }
+
+    .right-side .right-side-content .right-side-second-content .share-links img {
+        width: 50%;
+    }
+</style>
+<body>
+<div class="right-side">
+    <div class="right-side-content">
+        <div id="first-content" class="right-side-second-content">
+            <img class="header-img" id="change-image" src="assets/img/Header.svg" alt="icon">
+            <div class="connect-text" id="change-color">
+                <h3>Connect with us on social media</h3>
+                <p>Follow us and get updates delivered to your favorite social media channel.</p>
+            </div>
+            <div class="social-links">
+                <div class="card">
+                    <div class="icon"><img class="web-icon" src="assets/icons/web.png" alt=""></div>
+                    <a href="#" class="text">
+                        <h3>Visit us online</h3>
+                        <p>www.your-website.com</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="icon"><img src="assets/icons/facebook.png" alt=""></div>
+                    <a href="#" class="text">
+                        <h3>Facebook</h3>
+                        <p>www.your-website.com</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="icon"><img src="assets/icons/youtube.png" alt=""></div>
+                    <a href="#" class="text">
+                        <h3>YouTube</h3>
+                        <p>www.your-website.com</p>
+                    </a>
+                </div>
+            </div>
+            <div class="share-links" id="change-color-btn">
+                <img src="assets/icons/share.png" alt="icon">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

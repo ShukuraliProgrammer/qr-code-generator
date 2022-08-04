@@ -1,0 +1,133 @@
+.right-side {
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.right-side .right-side-second-content {
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  border: 0.5px solid #8c8c8c;
+  position: relative;
+}
+.right-side .right-side-second-content .header-right-side {
+  width: 100%;
+  height: 15%;
+  background-color: #3766b8;
+}
+.right-side .right-side-second-content .header-right-side h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  padding-top: 20px;
+}
+.right-side .right-side-second-content .body-right-side {
+  width: 100%;
+  height: 75%;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+.right-side .right-side-second-content .body-right-side .card-right-side {
+  width: 60%;
+  height: 70%;
+  background-color: #fff;
+  position: absolute;
+  top: 10%;
+  left: 19%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.right-side .right-side-second-content .body-right-side .card-right-side .body-img {
+  width: 100%;
+  border-bottom: 0.5px solid #f4f4f4;
+}
+.right-side .right-side-second-content .body-right-side .card-right-side h3 {
+  width: 90%;
+  height: 10%;
+  font-weight: normal;
+  text-align: center;
+}
+.right-side .right-side-second-content .body-right-side .card-right-side #star-1:checked ~ section [for=star-1] svg, .right-side .right-side-second-content .body-right-side .card-right-side #star-2:checked ~ section [for=star-1] svg, .right-side .right-side-second-content .body-right-side .card-right-side #star-2:checked ~ section [for=star-2] svg, .right-side .right-side-second-content .body-right-side .card-right-side #star-3:checked ~ section [for=star-1] svg, .right-side .right-side-second-content .body-right-side .card-right-side #star-3:checked ~ section [for=star-2] svg, .right-side .right-side-second-content .body-right-side .card-right-side #star-3:checked ~ section [for=star-3] svg, .right-side .right-side-second-content .body-right-side .card-right-side #star-4:checked ~ section [for=star-1] svg, .right-side .right-side-second-content .body-right-side .card-right-side #star-4:checked ~ section [for=star-2] svg, .right-side .right-side-second-content .body-right-side .card-right-side #star-4:checked ~ section [for=star-3] svg, .right-side .right-side-second-content .body-right-side .card-right-side #star-4:checked ~ section [for=star-4] svg, .right-side .right-side-second-content .body-right-side .card-right-side #star-5:checked ~ section [for=star-1] svg, .right-side .right-side-second-content .body-right-side .card-right-side #star-5:checked ~ section [for=star-2] svg, .right-side .right-side-second-content .body-right-side .card-right-side #star-5:checked ~ section [for=star-3] svg, .right-side .right-side-second-content .body-right-side .card-right-side #star-5:checked ~ section [for=star-4] svg, .right-side .right-side-second-content .body-right-side .card-right-side #star-5:checked ~ section [for=star-5] svg {
+  transform: scale(1);
+}
+.right-side .right-side-second-content .body-right-side .card-right-side #star-1:checked ~ section [for=star-1] svg path, .right-side .right-side-second-content .body-right-side .card-right-side #star-2:checked ~ section [for=star-1] svg path, .right-side .right-side-second-content .body-right-side .card-right-side #star-2:checked ~ section [for=star-2] svg path, .right-side .right-side-second-content .body-right-side .card-right-side #star-3:checked ~ section [for=star-1] svg path, .right-side .right-side-second-content .body-right-side .card-right-side #star-3:checked ~ section [for=star-2] svg path, .right-side .right-side-second-content .body-right-side .card-right-side #star-3:checked ~ section [for=star-3] svg path, .right-side .right-side-second-content .body-right-side .card-right-side #star-4:checked ~ section [for=star-1] svg path, .right-side .right-side-second-content .body-right-side .card-right-side #star-4:checked ~ section [for=star-2] svg path, .right-side .right-side-second-content .body-right-side .card-right-side #star-4:checked ~ section [for=star-3] svg path, .right-side .right-side-second-content .body-right-side .card-right-side #star-4:checked ~ section [for=star-4] svg path, .right-side .right-side-second-content .body-right-side .card-right-side #star-5:checked ~ section [for=star-1] svg path, .right-side .right-side-second-content .body-right-side .card-right-side #star-5:checked ~ section [for=star-2] svg path, .right-side .right-side-second-content .body-right-side .card-right-side #star-5:checked ~ section [for=star-3] svg path, .right-side .right-side-second-content .body-right-side .card-right-side #star-5:checked ~ section [for=star-4] svg path, .right-side .right-side-second-content .body-right-side .card-right-side #star-5:checked ~ section [for=star-5] svg path {
+  fill: #0090e3;
+  stroke: #0070b0;
+}
+.right-side .right-side-second-content .body-right-side .card-right-side section {
+  width: 300px;
+  height: 20%;
+  text-align: center;
+  border-bottom: 1px solid #f4f4f4;
+}
+.right-side .right-side-second-content .body-right-side .card-right-side label {
+  display: inline-block;
+  width: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+.right-side .right-side-second-content .body-right-side .card-right-side label svg {
+  width: 100%;
+  height: auto;
+  fill: white;
+  stroke: #CCC;
+  transform: scale(0.8);
+  transition: transform 200ms ease-in-out;
+}
+.right-side .right-side-second-content .body-right-side .card-right-side label svg path {
+  transition: fill 200ms ease-in-out, stroke 100ms ease-in-out;
+}
+.right-side .right-side-second-content .body-right-side .card-right-side label[for=star-null] {
+  display: block;
+  margin: 0 auto;
+  color: #999;
+}
+.right-side .right-side-second-content .body-right-side .card-right-side body {
+  text-align: center;
+  background: #f0f0f0;
+}
+.right-side .right-side-second-content .body-right-side .card-right-side input {
+  margin-top: 1rem;
+}
+.right-side .right-side-second-content .body-right-side .card-right-side textarea {
+  width: 80%;
+  height: 40%;
+  margin: 15px;
+  border: 0.5px solid #f4f4f4;
+  color: #a4a6a8;
+  background-color: #f4f4f4;
+}
+.right-side .right-side-second-content .body-right-side a {
+  text-decoration: none;
+  color: #a4a6a8;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.right-side .right-side-second-content .footer-right-side {
+  width: 100%;
+  height: 10%;
+  background-color: #e37b00;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.right-side .right-side-second-content .footer-right-side button {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  color: #fff;
+  font-size: 20px;
+}
+
+/*# sourceMappingURL=rating-mobile.css.map */

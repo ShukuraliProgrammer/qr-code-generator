@@ -1,0 +1,161 @@
+{% load static %} 
+{% block content %} 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>QR-Code</title>
+</head>
+<style>
+    .right-side {
+        width: 100%;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .right-side .right-side-second-content {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+    }
+
+    .right-side .right-side-second-content .connect-text h3 {
+        width: 80%;
+        height: 50%;
+        font-size: 25px;
+        margin: 0 auto;
+        align-items: center;
+        padding-top: 10px;
+    }
+
+    .right-side .right-side-second-content .connect-text p {
+        width: 80%;
+        height: 50%;
+        font-size: 17px;
+        margin: 0 auto;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.67);
+    }
+
+    .right-side .right-side-second-content .pdf-connect-text {
+        width: 100%;
+        height: 50%;
+        background-color: #da5167;
+        color: #fff;
+    }
+
+    .right-side .right-side-second-content .pdf-connect-text h3 {
+        width: 80%;
+        height: 15%;
+        font-size: 20px;
+        margin: 0 auto;
+        align-items: center;
+    }
+
+    .right-side .right-side-second-content .pdf-connect-text p {
+        width: 80%;
+        height: 10%;
+        font-size: 17px;
+        margin: 0 auto;
+        padding-top: 25px;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.67);
+    }
+
+    .right-side .right-side-second-content .pdf-connect-text .down-button {
+        width: 20px;
+        height: 20px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        margin: 20px;
+    }
+
+    .right-side .right-side-second-content .pdf-connect-text .down-button img {
+        width: 20px;
+    }
+
+    .right-side .right-side-second-content .pdf-connect-text .share-button {
+        width: 20px;
+        height: 20px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .right-side .right-side-second-content .pdf-connect-text .share-button img {
+        width: 20px;
+    }
+
+    .right-side .right-side-second-content .mp3-img {
+        width: 75%;
+        position: absolute;
+        top: 18%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .right-side .right-side-second-content .mp3-img img {
+        width: 100%;
+    }
+
+    .right-side .right-side-second-content .content .text p {
+        text-align: center;
+    }
+
+    .mp3-content {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mp3-title {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mp3-title h3 {
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+
+    .mp3-title p {
+        margin-bottom: 0;
+    }
+</style>
+<body>
+<div class="right-side">
+    <div id="first-content" class="right-side-second-content active">
+        <div class="pdf-connect-text" id="change-color">
+            <button class="down-button"><img src="../assets/icons/download.png" alt="icon"></button>
+            <button class="share-button"><img src="../assets/icons/share.png" alt="share"></button>
+        </div>
+        <div class="mp3-img">
+            <img src="../assets/img/mp3.png" alt="pdf-img">
+        </div>
+        <div class="mp3-content">
+            <div class="mp3-title">
+                <h3>Stars</h3>
+                <p>The Reluctant</p>
+            </div>
+            <audio controls>
+                <source src="../music/RUDE%20-%20Eternal%20Youth.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+{% endblock %} 

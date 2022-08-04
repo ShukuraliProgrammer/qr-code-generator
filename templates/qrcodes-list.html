@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-{% if request.user.is_superuser %}
+
 <div style="width: 200px; margin:40px auto; margin-top: 100px;">
-   <a  href="{% url 'Home' %}" class="btn btn-primary">Qr Code Creating</a>
+   <a  href="{% url 'template-list' %}" class="btn btn-primary">Qr Code Creating</a>
 </div>
 
-{% endif %}
+
 {% for qr in qr_code %}
 
 <div style="width: 800px; text-align: center; margin:10px auto">
@@ -17,12 +17,13 @@
 
       <div class="card-body">
         <h5 class="card-title"><a href="{{qr.url}}">{{qr.url}}</a></h5>
-        <h6><a class="btn btn-info"  href="{% url 'QrCodeDetail' qr.id %}">Detail</a></h6>
-        <img style=" width:150px; height: 120px;" src="{{qr.image.url}}"/><br><br>
+        <h6><a class="btn btn-info"  href="{% url 'qrcode_detail' qr.id %}">Detail</a></h6>
+        <img style=" width:200px; height: 200px;" src="{{qr.image.url}}"/><br><br>
         
         <a class="btn btn-success"  href="{{qr.image.url}}" download>
          Download
         </a>
+        <a href="{% url 'qrcode_delete' qr.id %}" class="btn btn-danger">Delete</a>
       </div>
       <div>Skaner qilib olindi: {{qr.url_counter}}</div>
       <div class="card-footer text-muted"> Yaratilga sana: 

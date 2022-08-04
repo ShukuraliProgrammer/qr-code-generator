@@ -1,0 +1,116 @@
+
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'scss/homa-page.css' %}">
+
+<div class="container">
+  <div class="left-side">
+      <div class="left-side-content">
+          <div class="title">
+              <span></span>
+              <p>Dynamic Codes</p>
+              <span></span>
+          </div>
+          <div class="cards">
+              <a href="{% url 'website_url_create' %}" onclick="check(event, 'web-site')" class="card active">
+                    <div class="icon">
+                        <img src="{% static 'icons/template.png' %}" alt="icon">
+                    </div>
+
+                    <div class="text">
+                        <h3>Website</h3>
+                        <p>Link to any page on the web</p>
+                    </div>
+               </a> 
+              <a href="{% url 'social_media_create' %}" onclick="check(event, 'social-media')" class="card">
+                  <div class="icon">
+                      <img src="{% static 'icons/template.png' %}" alt="icon">
+                  </div>
+                  <div class="text">
+                      <h3>Social Media</h3>
+                      <p>Link to your social media channels</p>
+                  </div>
+              </a>
+              <a href="{% url 'pdf_create' %}" onclick="check(event, 'pdf')" class="card">
+                  <div class="icon">
+                      <img src="{% static 'icons/template.png' %}" alt="icon">
+                  </div>
+                  <div class="text">
+                      <h3>PDF</h3>
+                      <p>Link to a mobile-optimize PDF</p>
+                  </div>
+              </a>
+              <a href="{% url 'rating_create' %}" onclick="check(event, 'app')" data-id="" class="card">
+                  <div class="icon">
+                      <img src="{% static 'icons/template.png' %}" alt="icon">
+                  </div>
+                  <div class="text">
+                      <h3>Rating</h3>
+                      <p>Ask a question and get raed</p>
+                  </div>
+              </a>
+              <a onclick="check(event, 'facebook')" data-id="" class="card">
+                  <div class="icon">
+                      <img src="{% static 'icons/template.png' %}" alt="icon">
+                  </div>
+                  <div class="text">
+                      <h3>Facebook</h3>
+                      <p>Get more Likes for your page</p>
+                  </div>
+              </a>
+              <a onclick="check(event, 'event')" class="card">
+                  <div class="icon">
+                      <img src="{% static 'icons/template.png' %}" alt="icon">
+                  </div>
+                  <div class="text">
+                      <h3>MP3</h3>
+                      <p>Play an audio file</p>
+                  </div>
+              </a>
+          </div>
+      </div>
+  </div>
+  <div class="right-side">
+      <div id="social-media" class="right-side-img">
+          <img src="{% static 'img/left-side-img.jpg' %}" alt="img">
+      </div>
+      <div id="web-site" class="right-side-img active">
+          <img src="{% static 'img/web-img.jpg' %}" alt="img">
+      </div>
+      <div id="pdf" class="right-side-img">
+          <img src="{% static 'img/pdf-img.jpg' %}" alt="img">
+      </div>
+      <div id="app" class="right-side-img">
+          <img src="{% static 'img/rating.jpg' %}" alt="img">
+      </div>
+      <div id="facebook" class="right-side-img">
+          <img src="{% static 'img/facebook-img.jpg' %}" alt="img">
+      </div>
+      <div id="event" class="right-side-img">
+          <img src="{% static 'img/mp3.jpg' %}" alt="img">
+      </div>
+  </div>
+</div>
+<div class="next-button">
+  <button class="btn-next">Next</button>
+</div>
+
+<script>
+
+  function check(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("right-side-img");
+      for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("card");
+      for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+  }
+
+</script>
+  {% endblock %} 

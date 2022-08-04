@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QR code generator</title>
+    <link rel="stylesheet" href="scss/main.css">
+</head>
+<body>
+<div class="container">
+    <div class="left-side">
+        <div class="header-input">
+            <div class="icon"><img src="assets/icons/megaphone.png" alt="icon"></div>
+            <input type="text" placeholder="Name your QR Code...">
+        </div>
+        <div class="design-customizations">
+            <div class="header-title">
+                <div class="icon">
+                    <img src="assets/icons/design.png" alt="icon">
+                </div>
+                <div class="text">
+                    <h3>Design & Customizations</h3>
+                </div>
+            </div>
+            <div class="choose-color">
+                <div class="title">
+                    <p>
+                        Choose a color theme and upload an image for your Social Media page.
+                    </p>
+                </div>
+                <div class="colors">
+                    <p>Colors:</p>
+                    <div class="color-card">
+                        <button onclick="changeColor(color1='#447fb6',color2='#e91e63')" class="first-card">
+                            <div class="box"></div>
+                            <div class="circle"></div>
+                        </button>
+                        <button onclick="changeColor(color1='#455a64',color2='#e91e63')" class="second-card">
+                            <div class="box"></div>
+                            <div class="circle"></div>
+                        </button>
+                        <button onclick="changeColor(color1='#d32f2f',color2='#ef9a9a')" class="third-card">
+                            <div class="box"></div>
+                            <div class="circle"></div>
+                        </button>
+                        <button onclick="changeColor(color1='#4caf50',color2='#81c784')" class="forth-card">
+                            <div class="box"></div>
+                            <div class="circle"></div>
+                        </button>
+                        <button onclick="changeColor(color1='#795548',color2='#ff8a65')" class="fifth-card">
+                            <div class="box"></div>
+                            <div class="circle"></div>
+                        </button>
+                    </div>
+                </div>
+                <div class="upload-color">
+                    <div class="primary">
+                        <p>Primary</p>
+                        <div class="card">
+                            <input class="code" type="text" id="change-first-value" value="#447fb6">
+                            <input class="color" type="color" id="change-second-value" value="#447fb6">
+                        </div>
+                    </div>
+                    <button class="change-button">
+                        <img src="assets/icons/arrows.png" alt="icons">
+                    </button>
+                    <div class="button-color">
+                        <p>Button</p>
+                        <div class="card">
+                            <input class="code" type="text" id="change-button-color-1" value="#e91e63">
+                            <input class="color" type="color" id="change-button-color-2" value="#e91e63">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="choose-img">
+                <div class="title">
+                    <p>Choose image from templates <span><a href="#">or upload your own</a></span></p>
+                </div>
+                <div class="images">
+                    <img onclick="changeImg(src='assets/img/Header.svg')" src="assets/img/Header.svg" alt="img">
+                    <img onclick="changeImg(src='assets/img/Header2.svg')" src="assets/img/Header2.svg" alt="img">
+                </div>
+            </div>
+        </div>
+        <div class="basic-information">
+            <div class="header-title">
+                <div class="icon">
+                    <img src="assets/icons/design.png" alt="icon">
+                </div>
+                <div class="text">
+                    <h3>Basic Information</h3>
+                </div>
+            </div>
+            <div class="content">
+                <div class="title">
+                    <p>Fields marked with a * are required information.</p>
+                </div>
+                <div class="headline">
+                    <p>Headline*:</p>
+                    <input type="text" value="Connect with us on social media">
+                </div>
+                <div class="about-us">
+                    <p>About us:</p>
+                    <textarea name="text">
+                        Follow us and get updates delivered to your favorite social media channel.
+                    </textarea>
+                </div>
+            </div>
+        </div>
+        <div class="social-media-channels">
+            <div class="header-title">
+                <div class="icon">
+                    <img src="assets/icons/design.png" alt="icon">
+                </div>
+                <div class="text">
+                    <h3>Social Media Channels</h3>
+                </div>
+            </div>
+            <div class="content">
+                <div class="title">
+                    <p>Add your username or links
+                        to social media pages below.
+                        Delete a channel or use the
+                        arrows to rearrange the
+                        order of the links as they
+                        appear.</p>
+                </div>
+                <div class="website">
+                    <p>Website:</p>
+                    <div class="icon"><img src="assets/icons/web.png" alt=""></div>
+                    <div class="inputs">
+                        <div class="url">
+                            <p class="title">URL*</p>
+                            <input type="text" value="www.your-website.com">
+                        </div>
+                        <div class="text">
+                            <p class="title">Text</p>
+                            <input type="text" value="Visit us online">
+                        </div>
+                    </div>
+                </div>
+                <div class="facebook">
+                    <p>Facebook:</p>
+                    <div class="icon"><img src="assets/icons/facebook.png" alt=""></div>
+                    <div class="inputs">
+                        <div class="url">
+                            <p class="title">URL*</p>
+                            <input type="text" value="www.facebook.com/page">
+                        </div>
+                        <div class="text">
+                            <p class="title">Text</p>
+                            <input type="text" value="Become a fan">
+                        </div>
+                    </div>
+                </div>
+                <div class="youtube">
+                    <p>YouTube:</p>
+                    <div class="icon"><img src="assets/icons/youtube.png" alt=""></div>
+                    <div class="inputs">
+                        <div class="url">
+                            <p class="title">URL*</p>
+                            <input type="text" value="www.youtube.com/user/mychannel">
+                        </div>
+                        <div class="text">
+                            <p class="title">Text</p>
+                            <input type="text" value="Watch our videos">
+                        </div>
+                    </div>
+                </div>
+                <!--                <div class="add-more">-->
+                <!--                    <div class="title">-->
+                <!--                        <p>Click on the icon to add a social media profile.</p>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+            </div>
+        </div>
+        <div class="welcome-screen">
+            <div class="header-title">
+                <div class="icon">
+                    <img src="assets/icons/design.png" alt="icon">
+                </div>
+                <div class="text">
+                    <h3>Welcome Screen</h3>
+                </div>
+            </div>
+            <div class="content">
+                <div class="title">
+                    <p>
+                        Display your logo while your page is loading.
+                    </p>
+                </div>
+                <div class="body">
+                    <div class="text">Image:</div>
+                    <div class="upload-image">
+                        <input type="file" id="upload-btn" hidden class="file-input">
+                        <label for="upload-btn"><img src="assets/icons/megaphone.png" alt=""></label>
+                    </div>
+                    <div class="change-button">
+                        <button>
+                            <img src="assets/icons/exchange.png" alt="icon">
+                            Change
+                        </button>
+                        <a href="#">Preview</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="advanced-options">
+            <div class="header-title">
+                <div class="icon">
+                    <img src="assets/icons/design.png" alt="icon">
+                </div>
+                <div class="text">
+                    <h3>Advanced Options</h3>
+                </div>
+            </div>
+            <div class="content">
+                <p class="text">Sharing:</p>
+                <div class="checkbox">
+                    <input id="add-checkbox" type="checkbox">
+                    <label for="add-checkbox">Add a share button to the page</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-side">
+        <div class="right-side-content">
+            <div class="buttons">
+                <button class="preview">Preview</button>
+                <button class="qr-code">QR Code</button>
+            </div>
+            <div class="right-side-content">
+                <img class="header-img" id="change-image" src="assets/img/Header.svg" alt="icon">
+                <div class="connect-text" id="change-color">
+                    <h3>Connect with us on social media</h3>
+                    <p>Follow us and get updates delivered to your favorite social media channel.</p>
+                </div>
+                <div class="social-links">
+                    <div class="card">
+                        <div class="icon"><img class="web-icon" src="assets/icons/web.png" alt=""></div>
+                        <div class="text">
+                            <h3>Visit us online</h3>
+                            <p>www.your-website.com</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="icon"><img src="assets/icons/facebook.png" alt=""></div>
+                        <div class="text">
+                            <h3>Facebook</h3>
+                            <p>www.your-website.com</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="icon"><img src="assets/icons/youtube.png" alt=""></div>
+                        <div class="text">
+                            <h3>YouTube</h3>
+                            <p>www.your-website.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="share-links" id="change-color-btn">
+                    <img src="assets/icons/share.png" alt="icon">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
