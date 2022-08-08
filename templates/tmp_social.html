@@ -57,7 +57,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="upload-color">
+                    <!-- <div class="upload-color">
                         <div class="primary">
                             <p>Primary</p>
                             <div class="card">
@@ -75,17 +75,14 @@
                                 <input class="color" type="color" id="change-button-color-2" value="#e91e63">
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="choose-img">
+         
                     <div class="title">
                         <p>Choose image from templates <span><input type="file" name="image"> or upload your own</span></p>
                     </div>
-                    <div class="images">
-                        <img onclick="changeImg(src='{% static 'img/Header.svg' %}')" src="{% static 'img/Header.svg' %}" alt="img">
-                        <img onclick="changeImg(src='{% static 'img/Header2.svg' %}')" src="{% static 'img/Header2.svg' %}" alt="img">
-                    </div>
-                </div>
+                    
+
             </div>
             <div class="basic-information">
                 <div class="header-title">
@@ -181,56 +178,10 @@
                     <!--                </div>-->
                 </div>
             </div>
-            <div class="welcome-screen">
-                <div class="header-title">
-                    <div class="icon">
-                        <img src="{% static 'icons/design.png' %}" alt="icon">
-                    </div>
-                    <div class="text">
-                        <h3>Welcome Screen</h3>
-                    </div>
-                </div>
-                <div class="content">
-                    <div class="title">
-                        <p>
-                            Display your logo while your page is loading.
-                        </p>
-                    </div>
-                    <div class="body">
-                        <div class="text">Image:</div>
-                        <div class="upload-image">
-                            <input type="file" id="upload-btn" name="welcome_screen" hidden class="file-input">
-                            <label for="upload-btn"><img src="{% static 'icons/megaphone.png' %}" alt=""></label>
-                        </div>
-                        <div class="change-button">
-                            <button>
-                                <img src="{% static 'icons/exchange.png' %}" alt="icon">
-                                Change
-                            </button>
-                            <a href="#">Preview</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="advanced-options">
-                <div class="header-title">
-                    <div class="icon">
-                        <img src="{% static 'icons/design.png' %}" alt="icon">
-                    </div>
-                    <div class="text">
-                        <h3>Advanced Options</h3>
-                    </div>
-                </div>
-                <div class="content">
-                    <p class="text">Sharing:</p>
-                    <div class="checkbox">
-                        <input id="add-checkbox" type="checkbox">
-                        <label for="add-checkbox">Add a share button to the page</label>
-                    </div>
-                </div>
-            </div>
+
+
         </div>
-        <button type="submit" class="btn btn-success">Save</button>           
+        <button type="submit" class="btn btn-info">Save</button>           
     </form>
  
     <div class="right-side">
@@ -240,7 +191,7 @@
                 <button class="qr-code">QR Code</button>
             </div>
             <div class="right-side-content">
-                <img class="header-img" id="change-image" src="{% static 'img/Header.svg' %}" alt="icon">
+                
                 <div class="connect-text" id="change-color">
                     <h3>Connect with us on social media</h3>
                     <p>Follow us and get updates delivered to your favorite social media channel.</p>
@@ -249,19 +200,19 @@
                     <div class="card">
                         <div class="icon"><img class="web-icon" src="{% static 'icons/web.png' %}" alt=""></div>
                         <div class="text">
-                            <h3>Visit us online</h3>
+                            <h3>Visit us website</h3>
                             <p>www.your-website.com</p>
                         </div>
                     </div>
                     <div class="card">
-                        <div class="icon"><img src="{5 static 'icons/facebook.pn' %}g" alt=""></div>
+                        <div class="icon"><img src="{% static 'icons/facebook.png' %}" alt=""></div>
                         <div class="text">
                             <h3>Facebook</h3>
                             <p>www.your-website.com</p>
                         </div>
                     </div>
                     <div class="card">
-                        <div class="icon"><img src="{5 static 'icons/youtube.png' %}" alt=""></div>
+                        <div class="icon"><img src="{% static 'icons/youtube.png' %}" alt=""></div>
                         <div class="text">
                             <h3>YouTube</h3>
                             <p>www.your-website.com</p>

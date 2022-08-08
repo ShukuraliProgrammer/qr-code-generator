@@ -1,6 +1,11 @@
-
-{% block content %} 
-
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>QR-Code</title>
+</head>
 <style>
     .right-side {
         width: 100%;
@@ -148,39 +153,48 @@
 <div class="right-side">
     <div class="right-side-content">
         <div id="first-content" class="right-side-second-content">
-            <img class="header-img" id="change-image" src="assets/img/Header.svg" alt="icon">
+            {% if qr.image %}
+            <img class="header-img" id="change-image" src="{% static 'img/Header.svg' %}" alt="icon">
+            {% endif %}
             <div class="connect-text" id="change-color">
-                <h3>Connect with us on social media</h3>
-                <p>Follow us and get updates delivered to your favorite social media channel.</p>
+                <h3>{{qr.qrname}}</h3>
+                <p>{{qr.headline}}</p>
             </div>
             <div class="social-links">
                 <div class="card">
-                    <div class="icon"><img class="web-icon" src="assets/icons/web.png" alt=""></div>
-                    <a href="#" class="text">
-                        <h3>Visit us online</h3>
-                        <p>www.your-website.com</p>
+                    {% if qr.title1 and qr.url1 %}
+                    <div class="icon"><img class="web-icon" src="{% static 'icons/web.png' %}" alt=""></div>
+                    <a href="{{ qr.url1 }}" class="text">
+                        <h3>{{qr.social_media_type}}</h3>
+                        <p>{{qr.title1}}</p>
                     </a>
+                    {% endif %}
                 </div>
+                {% if qr.title2 and qr.url2 %}
                 <div class="card">
-                    <div class="icon"><img src="assets/icons/facebook.png" alt=""></div>
+                    <div class="icon"><img src="{% static 'icons/facebook.png' %}" alt=""></div>
                     <a href="#" class="text">
                         <h3>Facebook</h3>
                         <p>www.your-website.com</p>
                     </a>
                 </div>
+                {% endif %}
+                {% if qr.title3 and qr.url3 %}
                 <div class="card">
-                    <div class="icon"><img src="assets/icons/youtube.png" alt=""></div>
+                    <div class="icon"><img src="{% static 'icons/youtube.png' %}" alt=""></div>
                     <a href="#" class="text">
                         <h3>YouTube</h3>
                         <p>www.your-website.com</p>
                     </a>
                 </div>
+                {% endif %}
+     
             </div>
             <div class="share-links" id="change-color-btn">
-                <img src="assets/icons/share.png" alt="icon">
+                <img src="{% static 'icons/share.png' %}" alt="icon">
             </div>
         </div>
     </div>
 </div>
 </body>
-{% endblock %}
+</html>

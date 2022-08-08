@@ -1,7 +1,10 @@
 from django.contrib import admin
-from .models import QrCode, Tariff, SocialMediaChannels, Comment, Template
-from django.contrib.auth.models import Group, User
+from django.contrib.auth.models import User
+
+from .models import QrCode, Tariff, SocialMediaChannels, Comment, Template, User
+
 from admin_list_charts.admin import ListChartMixin
+admin.site.register(User)
 
 @admin.register(QrCode)
 class QrCodeAdmin(ListChartMixin, admin.ModelAdmin):
@@ -29,6 +32,3 @@ class TemplateAdmin(admin.ModelAdmin):
     pass
 
 
-
-admin.site.unregister(User)
-admin.site.unregister(Group)

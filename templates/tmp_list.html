@@ -41,33 +41,6 @@
                       <p>Link to a mobile-optimize PDF</p>
                   </div>
               </a>
-              <a href="{% url 'rating_create' %}" onclick="check(event, 'app')" data-id="" class="card">
-                  <div class="icon">
-                      <img src="{% static 'icons/template.png' %}" alt="icon">
-                  </div>
-                  <div class="text">
-                      <h3>Rating</h3>
-                      <p>Ask a question and get raed</p>
-                  </div>
-              </a>
-              <a onclick="check(event, 'facebook')" data-id="" class="card">
-                  <div class="icon">
-                      <img src="{% static 'icons/template.png' %}" alt="icon">
-                  </div>
-                  <div class="text">
-                      <h3>Facebook</h3>
-                      <p>Get more Likes for your page</p>
-                  </div>
-              </a>
-              <a onclick="check(event, 'event')" class="card">
-                  <div class="icon">
-                      <img src="{% static 'icons/template.png' %}" alt="icon">
-                  </div>
-                  <div class="text">
-                      <h3>MP3</h3>
-                      <p>Play an audio file</p>
-                  </div>
-              </a>
           </div>
       </div>
   </div>
@@ -93,7 +66,7 @@
   </div>
 </div>
 <div class="next-button">
-  <button class="btn-next">Next</button>
+  <a class="btn-next" href="{% url 'qrcodes-list' %}">Qrcodes List</button>
 </div>
 
 <script>

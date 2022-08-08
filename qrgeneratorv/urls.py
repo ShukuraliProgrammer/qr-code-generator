@@ -7,12 +7,14 @@ urlpatterns = [
    path('qrcode-detail/<int:pk>/', views.qrcode_detailView, name='qrcode_detail'),
    path('qrcode-delete/<int:pk>/', views.qrcode_deleteView,name='qrcode_delete'),
    path('qr-webiste-create', views.webiste_url_create,name='website_url_create'),
+   # path('register/', views.registerview,name='registerview'),
+   # path('login/', views.login_user,name='login_user'),
+
    
    path('qr-url/<int:pk>', views.qr_url, name='QrUrl'),
 
   
    path('social_new_create', views.tmp_social_new_create, name='social_media_create'),
    path('phone-detail/<int:pk>/', views.phoneDetailViews, name='PhoneDetail'),
-   path('pdf_create', views.tmp_pdf_create, name='pdf_create'),
-   path('rating-create', views.tmp_rating_create, name='rating_create'),   
+   path('pdf_create', views.tmp_pdf_create, name='pdf_create'),  
 ]
