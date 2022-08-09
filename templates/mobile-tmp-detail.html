@@ -173,18 +173,18 @@
                 {% if qr.title2 and qr.url2 %}
                 <div class="card">
                     <div class="icon"><img src="{% static 'icons/facebook.png' %}" alt=""></div>
-                    <a href="#" class="text">
-                        <h3>Facebook</h3>
-                        <p>www.your-website.com</p>
+                    <a href="{{ qr.url2 }}" class="text">
+                        <h3>{{ qr.social_media_type2 }}</h3>
+                        <p>{{qr.title2}}</p>
                     </a>
                 </div>
                 {% endif %}
                 {% if qr.title3 and qr.url3 %}
                 <div class="card">
                     <div class="icon"><img src="{% static 'icons/youtube.png' %}" alt=""></div>
-                    <a href="#" class="text">
-                        <h3>YouTube</h3>
-                        <p>www.your-website.com</p>
+                    <a href="{{qr.url3}}" class="text">
+                        <h3>{{ qr.social_media_type3 }}</h3>
+                        <p>{{ qr.title3 }}</p>
                     </a>
                 </div>
                 {% endif %}

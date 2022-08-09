@@ -20,7 +20,7 @@
       <div class="card-body">
         <h5 class="card-title"><a href="{{qr.url}}">{{qr.url}}</a></h5>
         <h6><a class="btn btn-info"  href="{% url 'qrcode_detail' qr.id %}">Detail</a></h6>
-        <img style=" width:200px; height: 200px;" src="{{qr.image.url}}"/><br><br>
+        <img style=" width:200px; height: 200px;" src="/media/qrcode/{{qr.id}}.png"/><br><br>
         
         <a class="btn btn-success"  href="{{qr.image.url}}" download>
          Download

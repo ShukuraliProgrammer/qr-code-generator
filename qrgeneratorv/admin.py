@@ -9,9 +9,30 @@ admin.site.register(User)
 @admin.register(QrCode)
 class QrCodeAdmin(ListChartMixin, admin.ModelAdmin):
     date_hierarchy = 'created_at'
-    list_display = ('url', 'created_at', 'url_counter')
+    list_display = ('url', 'created_at', 'url_counter', 'mobile', 'os', 'other_devices')
     list_filter = ('url', 'created_at', 'updated_at')
     search_fields = ('created_at', 'url', 'url_counter')
+
+    def has_add_permission(self, request):
+        if request.user.is_admin:
+            return True
+        return False
+    
+    def has_delete_permission(self, request, obj=None):
+        if request.user.is_admin:
+            return True
+        return False
+    
+    def has_change_permission(self, request, obj=None):
+        if request.user.is_admin:
+            return True
+        return False
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(user=request.user)
+
 
 @admin.register(Tariff)
 class TariffAdmin(admin.ModelAdmin):
@@ -29,6 +50,25 @@ class CommentAdmin(admin.ModelAdmin):
 
 @admin.register(Template)
 class TemplateAdmin(admin.ModelAdmin):  
-    pass
+    list_display = ('social_media_type', 'social_media_type1_url_counter', 'social_media_type2', 'social_media_type2_url_counter', 'social_media_type3', 'social_media_type3_url_counter')
 
 
+    def has_add_permission(self,request):
+        if request.user.is_admin:
+            return True
+        return False
+    def has_change_permission(self, request, obj=None):
+        if request.user.is_admin:
+            return True
+        return False
+    def has_delete_permission(self, request, obj=None):
+        if request.user.is_admin:
+            return True
+        return False
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(user=request.user)
+
+    

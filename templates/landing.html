@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Landing</title>
+    <link rel="stylesheet" href="{% static 'scss/landing.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="nav-container">
+    <div class="navbar">
+        <div class="logo">
+            <img src="{% static 'img/logo.jpg' %}" alt="logo"/>
+        </div>
+        <div class="menu">
+            <ul>
+                <li>Menu</li>
+                <li>Menu</li>
+                <li>Menu</li>
+                <li>Menu</li>
+                <li>Menu</li>
+            </ul>
+        </div>
+        <div class="button">
+            <a href="{% url 'login_user' %}"><h3>Generate your <span> QR Code</span>!</h3></a>
+        </div>
+    </div>
+</div>
+<div class="banner-container">
+    <div class="title">
+        <h2>Welcome to    <span>QR Code</span> Generator</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, tenetur.</p>
+    </div>
+    <div class="banner-img">
+        <img src="{% static 'img/banner.jpg' %}" alt="banner"/>
+        <div class="change-logo">
+            <h4>Change <span>logo</span> QR Code</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, ipsum.</p>
+        </div>
+        <div class="change-color">
+            <h4>Change <span>color</span> QR Code</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis, quae.</p>
+        </div>
+        <div class="change-scan-me">
+            <h4>Change <span>Scan Me</span> QR Code</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, vero.</p>
+        </div>
+    </div>
+    <div class="learn-more">
+        <a href="#"><h3>Learn <span> More</span></h3></a>
+    </div>
+</div>
+<div class="about-us-container">
+    <div class="title">
+        <h2>About <span>Us</span></h2>
+    </div>
+    <div class="content">
+        <div class="text">
+            <h3><span>QR Code</span> Generator</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque, exercitationem
+                incidunt itaque iusto laborum nihil, nulla perferendis possimus quam repellendus reprehenderit
+                rerum similique soluta temporibus! Aliquid animi cum doloremque eius eos esse facilis illo illum
+                ipsum natus necessitatibus neque qui quis reprehenderit rerum saepe sapiente, velit veniam vitae
+                voluptatibus? Adipisci animi distinctio doloremque fuga harum, ipsa maiores officiis ullam velit
+                voluptate. Alias aliquam aut blanditiis corporis doloribus eos ex excepturi harum illum incidunt
+                ipsum iusto maiores molestiae necessitatibus nisi nobis odit officiis perspiciatis quo, repellat
+                rerum sequi suscipit, ut, voluptate voluptatibus! Atque dolor iusto magni omnis quod! Dicta,
+                facere.</p>
+        </div>
+        <div class="content-img">
+            <img src="{% static 'img/payment.jpg' %}" alt="img"/>
+        </div>
+    </div>
+</div>
+<div class="contact-container">
+    <div class="back-img"> </div>
+    <div class="title">
+        <p>We Are <span>Waiting</span> For You.</p>
+        <h3>Contact <span>Us</span></h3>
+    </div>
+    <div class="content">
+        <div class="phone-number">
+            <h4><span>Phone Number: </span>+998908526396</h4>
+        </div>
+        <div class="phone-number">
+            <h4><span>Phone Number: </span>+998908526396</h4>
+        </div>
+        <div class="phone-number">
+            <h4><span>Phone Number: </span>+998908526396</h4>
+        </div>
+        <div class="mail">
+            <h4><span>Gmail: </span>yourgmail@gmail.com</h4>
+        </div>
+        <div class="mail">
+            <h4><span>Gmail: </span>yourgmail@gmail.com</h4>
+        </div>
+    </div>
+</div>
+</body>
+</html>

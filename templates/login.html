@@ -1,0 +1,139 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+
+<style>
+    .login-container {
+        width: 100%;
+        height: 100vh;
+        background-color: #f4f4f4;
+        display: flex;
+        align-items: center;
+    }
+    .login-container .login {
+        width: 600px;
+        height: 500px;
+        background-color: #fff;
+        margin: 0 auto;
+        border-radius: 5px;
+        box-shadow: -1px 3px 35px -6px #02e1e4;
+    }
+    .login-container .login .back-img {
+        width: 100%;
+        height: 40%;
+        background-image: url("/static/img/login_back.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+    }
+    .login-container .login .back-img h3 {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(244, 244, 244, 0.51);
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 35px;
+        letter-spacing: 5px;
+        border-bottom: 2px solid rgba(140, 140, 140, 0.59);
+    }
+    .login-container .login .back-img h3 span {
+        color: #02e1e4;
+    }
+    .login-container .login .login-content {
+        width: 80%;
+        height: 60%;
+        margin: 0 auto;
+    }
+    .login-container .login .login-content form {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .login-container .login .login-content form label {
+        width: 100%;
+        display: flex;
+    }
+    .login-container .login .login-content form label h5 {
+        width: 20%;
+        font-size: 18px;
+        margin: 13px 28px 0 0;
+    }
+    .login-container .login .login-content form label h4 {
+        width: 20%;
+        font-size: 18px;
+        margin: 13px 28px 0 0;
+    }
+    .login-container .login .login-content form label input {
+        border: none;
+        border-bottom: 1px solid #e2e2e2;
+        width: 80%;
+        height: 40px;
+        font-size: 17px;
+    }
+    .login-container .login .login-content form label :focus-visible {
+        outline: none;
+        border-bottom: 1px solid #02e1e4;
+    }
+    .login-container .login .login-content form .login-button {
+        width: 40%;
+        height: 15%;
+        font-size: 20px;
+        border: 2px solid #a4a6a8;
+        border-radius: 5px;
+        background-color: #f4f4f4;
+        box-shadow: -1px 3px 35px -6px #e2e2e2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #000;
+        text-decoration: none;
+        font-weight: normal;
+    }
+    .login-container .login .login-content form .login-button span {
+        color: #02e1e4;
+    }
+</style>
+<body>
+<div class="login-container">
+    <div class="login">
+        <div class="back-img">
+            <h3>LOG <span>IN</span></h3>
+        </div>
+        <div class="login-content">
+            <form onSubmit={handleSubmit} method="POST">
+                {% csrf_token %}
+                <label>
+                    <h5>Gmail </h5>
+                    <input type="email"
+                           name='email'
+                           placeholder="yourgmail@gmail.com"
+                    />
+                </label>
+                <label>
+                    <h4>Password </h4>
+                    <input type="password"
+                           name="password"
+                           placeholder="********"
+                    />
+                </label>
+                <a href="/" class='login-button'>Back to <span>Home</span></a>
+                <button type="submit" class='login-button'>Log <span>in</span></button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+
+
+
+{% endblock %}
