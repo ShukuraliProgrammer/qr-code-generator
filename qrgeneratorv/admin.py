@@ -4,8 +4,10 @@ from django.contrib.auth.models import User
 from .models import QrCode, Tariff, SocialMediaChannels, Comment, Template, User
 
 from admin_list_charts.admin import ListChartMixin
-admin.site.register(User)
 
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('email', 'username', 'first_name', 'last_name', 'is_staff','is_active','is_superuser', 'created_date', 'modified_date')
 @admin.register(QrCode)
 class QrCodeAdmin(ListChartMixin, admin.ModelAdmin):
     date_hierarchy = 'created_at'

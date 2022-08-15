@@ -7,6 +7,34 @@
     <title>QR code generator</title>
     <link rel="stylesheet" href="{% static 'scss/main.css' %}">
 </head>
+<style>
+    .design-customizations{
+        height: 40vh!important;
+    }
+    .design-customizations .header-title{
+        height: 20%!important;
+    }
+    .social-media-channels{
+        height: 100vh!important;
+    }
+    .social-media-channels .header-title{
+        height: 10%!important;
+    }
+    .social-media-channels .content .title{
+        height: 10%!important;
+    }
+    .social-media-channels .content .website,.facebook,.youtube{
+        height: 18%!important;
+    }
+    .social-media-channels .content .select{
+        width: 80%;
+        display: flex;
+        justify-content:center;
+        align-items:center;
+        margin: 0 auto;
+    }
+
+</style>
 <body>
 <div class="container">
     <form method="POST">
@@ -26,59 +54,9 @@
                         <h3>Design & Customizations</h3>
                     </div>
                 </div>
-                <div class="choose-color">
-                    <div class="title">
-                        <p>
-                            Choose a color theme and upload an image for your Social Media page.
-                        </p>
-                    </div>
-                    <div class="colors">
-                        <p>Colors:</p>
-                        <div class="color-card">
-                            <button onclick="changeColor(color1='#447fb6',color2='#e91e63')" class="first-card">
-                                <div class="box"></div>
-                                <div class="circle"></div>
-                            </button>
-                            <button onclick="changeColor(color1='#455a64',color2='#e91e63')" class="second-card">
-                                <div class="box"></div>
-                                <div class="circle"></div>
-                            </button>
-                            <button onclick="changeColor(color1='#d32f2f',color2='#ef9a9a')" class="third-card">
-                                <div class="box"></div>
-                                <div class="circle"></div>
-                            </button>
-                            <button onclick="changeColor(color1='#4caf50',color2='#81c784')" class="forth-card">
-                                <div class="box"></div>
-                                <div class="circle"></div>
-                            </button>
-                            <button onclick="changeColor(color1='#795548',color2='#ff8a65')" class="fifth-card">
-                                <div class="box"></div>
-                                <div class="circle"></div>
-                            </button>
-                        </div>
-                    </div>
-                    <!-- <div class="upload-color">
-                        <div class="primary">
-                            <p>Primary</p>
-                            <div class="card">
-                                <input class="code" type="text" id="change-first-value" name="color_primary">
-                                <input class="color" type="color" id="change-second-value" value="#447fb6">
-                            </div>
-                        </div>
-                        <button class="change-button">
-                            <img src="{% static 'icons/arrows.png' %}" alt="icons">
-                        </button>
-                        <div class="button-color">
-                            <p>Button</p>
-                            <div class="card">
-                                <input class="code" type="text" id="change-button-color-1" name="color_button">
-                                <input class="color" type="color" id="change-button-color-2" value="#e91e63">
-                            </div>
-                        </div>
-                    </div> -->
-                </div>
+                
          
-                    <div class="title">
+                    <div class="choose-img">
                         <p>Choose image from templates <span><input type="file" name="image"> or upload your own</span></p>
                     </div>
                     
@@ -132,11 +110,11 @@
                         <div class="icon"><img src="{% static 'icons/web.png' %}" alt=""></div>
                         <div class="inputs">
                             <div class="url">
-                                <p class="title">URL*</p>
+                    
                                 <input type="text" name="url1" value="www.your-website.com">
                             </div>
                             <div class="text">
-                                <p class="title">Text</p>
+                                
                                 <input type="text" name="title1" value="Visit us online">
                             </div>
                         </div>
@@ -147,11 +125,11 @@
                         <div class="icon"><img src="{% static 'icons/facebook.png' %}" alt=""></div>
                         <div class="inputs">
                             <div class="url">
-                                <p class="title">URL*</p>
+                              
                                 <input type="text" name="url2" value="www.facebook.com/page">
                             </div>
                             <div class="text">
-                                <p class="title">Text</p>
+                               
                                 <input type="text" name="title2" value="Become a fan">
                             </div>
                         </div>
@@ -162,21 +140,17 @@
                         <div class="icon"><img src="{% static 'icons/youtube.png' %}" alt=""></div>
                         <div class="inputs">
                             <div class="url">
-                                <p class="title">URL*</p>
+                         
                                 <input type="text" name="url3" value="www.youtube.com/user/mychannel">
                             </div>
                             <div class="text">
-                                <p class="title">Text</p>
+                             
                                 <input type="text" name="title3" value="Watch our videos">
                             </div>
                         </div>
                     </div>
-                    <!--                <div class="add-more">-->
-                    <!--                    <div class="title">-->
-                    <!--                        <p>Click on the icon to add a social media profile.</p>-->
-                    <!--                    </div>-->
-                    <!--                </div>-->
-                    <div class="title">
+            
+                    <div class="select">
                         <p>Scale</p>
 
                         <select name="scale" class="header-input">
@@ -192,7 +166,7 @@
                             <option value="10">10</option>
                         </select>
                     </div>
-                    <div>
+                    <div class="select">
                         <p>Color</p>
                         <select name="color" class="header-input">
                             <option value="black">Black</option>

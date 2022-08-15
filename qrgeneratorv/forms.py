@@ -1,4 +1,4 @@
-from .models import Template, QrCode
+from .models import Template, QrCode, QRCodeFree
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .models import User
@@ -13,6 +13,15 @@ class GenerateQRForm(forms.ModelForm):
         ]
 
 
+
+class GenerateQRFree(forms.ModelForm):
+    class Meta:
+        model = QRCodeFree
+        fields = [
+            'content',
+            'scale',
+            'color'
+        ]
 
 
 

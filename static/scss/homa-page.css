@@ -97,6 +97,7 @@ body .container .right-side .right-side-img.active {
   display: block;
 }
 body .next-button {
+
   width: 100%;
   height: 70px;
   position: fixed;
@@ -116,5 +117,6 @@ body .next-button .btn-next {
   cursor: pointer;
   font-size: 20px;
 }
+
 
 /*# sourceMappingURL=homa-page.css.map */

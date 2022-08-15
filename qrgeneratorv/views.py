@@ -1,13 +1,15 @@
+from asyncore import file_dispatcher
 import random
-from .forms import TemplateForm, UserForm, UserLoginForm, GenerateQRForm
+from tkinter import Canvas
+from .forms import TemplateForm, UserForm, UserLoginForm, GenerateQRForm, GenerateQRFree
 from django.shortcuts import redirect, render
-from .models import QrCode, Template, ForFakeTemplate
+from .models import QrCode, Template, ForFakeTemplate, QRCodeFree
 from django.db.models import Count
 import qrcode
 from django.core.files import File
 from io import BytesIO
 from PIL import Image, ImageDraw
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 import pyqrcode
 from shutil import copy
 import os
@@ -20,6 +22,7 @@ def qrcodes_list(request):
     if request.user:
         try:
             qr_code=QrCode.objects.all().filter(user=request.user).order_by('-created_at')
+            print(qr_code)
         except:
             return redirect('login_user')
     return render(request,"qrcodes-list.html",{'qr_code':qr_code})
@@ -62,6 +65,10 @@ def login_user(request):
         else:
             context = {'form': form}
             return render(request, 'login.html', context=context)
+
+def logoutView(request):
+    logout(request)
+    return redirect('home')
 
 def qr_template_list(request):
     
@@ -113,7 +120,10 @@ def webiste_url_create(request):
                 qr_color = (0, 0, 0, 255)
             qr_code.png("{}.png".format(QR.id), scale=QR.scale, module_color=qr_color)
             copy("{}.png".format(QR.id), "media/qrcode/")
-            QR.image = "{}.png".format(QR.id)
+            canvas=Image.open("/home/administrator/DataSiteTechnology/Projects/qr-generator/media/qrcode/{}.png".format(form.instance.id))
+            buffer=BytesIO()
+            canvas.save(buffer,"PNG")    
+            QR.image.save(f'image{random.randint(0,9999)}',File(buffer),save=False)
             QR.save()
             os.remove("{}.png".format(QR.id))
             return redirect('qrcodes-list')
@@ -133,8 +143,12 @@ def qr_url(request,pk):
         qr_code.other += 1
     qr_code.save()
     return redirect(qr_code.url)
-
-
+from django.core.files import File
+import urllib
+from django.core.files.images import ImageFile
+from thumbnails.images import Thumbnail, FallbackImage
+from PIL import Image, ImageDraw
+import re
 def tmp_social_new_create(request):
     context={}
     if request.method == "POST":
@@ -143,9 +157,11 @@ def tmp_social_new_create(request):
         form.instance.user = user
         if form.is_valid():
             form.instance.user = request.user
-            QR = QrCode()
+            
             form.instance.image = request.FILES.get('image')
+            print("This is image", request.FILES.get('image'))
             TMP = form.save()
+            print("Template", TMP)
             if form.instance.url1:
                 ForFakeTemplate.objects.create(
                     template=form.instance,
@@ -193,24 +209,26 @@ def tmp_social_new_create(request):
                 qr_color = (173, 216, 230, 255)
             else:
                 qr_color = (0, 0, 0, 255)
+            TMP.save()
+            print(TMP.id)
             qr_code =pyqrcode.create('10.10.1.89:8000/phone-detail/{}'.format(TMP.id))
             qr_code.png("{}.png".format(TMP.id), scale=TMP.scale, module_color=qr_color)
             copy("{}.png".format(TMP.id), "media/qrcode/")
           
-            TMP.save()
-            print("TMP", TMP)
-            form.save()
-            QR.image.save("/home/administrator/DataSiteTechnology/Projects/qr-generator/media/qrcode/{}.png".format(form.instance.id))
-            print("This is QR image", QR.image)
+            
+            canvas=Image.open("/home/administrator/DataSiteTechnology/Projects/qr-generator/media/qrcode/{}.png".format(form.instance.id))
+            buffer=BytesIO()
+            canvas.save(buffer,"PNG")
+            QR = QrCode()
+            QR.image.save(f'image{random.randint(0,9999)}',File(buffer),save=False)
             QR.url = f'/phone-detail/{TMP.id}'
-            print("This is QR url", QR.url)
+            QR.user= request.user
             QR.name = TMP.qrname
-            print("This is QR name", QR.name)
+            QR.template = form.instance
             QR.save()
             print("this is QR",QR)
- 
-            QrCode.objects.create(url=f'/phone-detail/{TMP.id}', image =QR.image , name=TMP.qrname, user=request.user)
-            os.remove("{}.png".format(TMP.id))
+           # QrCode.objects.create(url=f'/phone-detail/{TMP.id}', image =QR.image , name=TMP.qrname, user=request.user)
+        
             return redirect('qrcodes-list')
         return redirect('template-list')
     context = {
@@ -220,7 +238,11 @@ def tmp_social_new_create(request):
 
 def phoneDetailViews(request,pk):
     qr_code=Template.objects.get(id=pk)
-
+    print(qr_code)
+    qrcode1 = QrCode.objects.get(template=qr_code)
+    print(qr_code)
+    qrcode1.url_counter += 1
+    qrcode1.save()
     return render(request,"mobile-tmp-detail.html",{'qr':qr_code})
     
 def tmp_pdf_create(request):
@@ -259,3 +281,65 @@ def qrcode_social3_url_counter(request,pk):
     qr_code.url3 = qrformfake.url
     qr_code.save()
     return redirect(qr_code.url3)
+
+
+
+
+
+
+def free_web_url_create(request):
+
+    form = GenerateQRFree(request.POST or None)
+
+    if form.is_valid():
+        QR = form.save()
+
+        # QR.id 
+
+        qr_code = pyqrcode.create(QR.content)
+
+        if QR.color == 'black':
+            qr_color = (0, 0, 0, 255)
+        elif QR.color == 'red':
+            qr_color = (255, 0, 0, 255)
+        elif QR.color == 'blue':
+            qr_color = (0, 0, 255, 255)
+        elif QR.color == 'green':
+            qr_color = (0, 255, 0, 255)
+        elif QR.color == 'brown':
+            qr_color = (150, 75, 0, 255)
+        elif QR.color == 'purple':
+            qr_color = (128, 0, 128, 255)
+        elif QR.color == 'pink':
+            qr_color = (255, 192, 203, 255)
+        elif QR.color == 'yellow':
+            qr_color = (255, 255, 0, 255)
+        elif QR.color == 'grey':
+            qr_color = (128, 128, 128, 255)
+        elif QR.color == 'light_blue':
+            qr_color = (173, 216, 230, 255)
+        else:
+            qr_color = (0, 0, 0, 255)
+
+        
+        qr_code.png("{}.png".format(QR.id), scale=QR.scale, module_color=qr_color)
+        copy("{}.png".format(QR.id), "static/")
+        os.remove("{}.png".format(QR.id))
+
+        qrcode = QRCodeFree.objects.filter(id = QR.id).first()
+
+        return render(request, 'free_index.html', {"qrcode": qrcode})
+    
+    return render(request, 'free_qrgenerate.html', {"form": form})
+
+
+
+import json 
+def qrcodestyle(request):
+    data = {
+        'color': 'black',
+    }
+    context = {
+        'content': json.dumps(data)
+    }
+    return render(request, 'qr-styling.html',context=context)

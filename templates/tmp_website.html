@@ -1,119 +1,124 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% load static %}
 {% block content %}
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Web-site</title>
     <link rel="stylesheet" href="{% static 'scss/pdf-main.css' %}">
 </head>
+
 <body>
-<div class="container">
-    <div class="left-side">
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.errors }}
-            <div class="header-input">
-                <div class="icon"><img src="{% static 'icons/megaphone.png' %}" alt="icon"></div>
-                <input type="text" name="name" placeholder="Name your QR Code...">
-            </div>
-        
-            <div class="website-qr">
-                <div class="header-title">
-                    <div class="icon">
-                        <img src="{% static 'icons/design.png' %}" alt="icon">
-                    </div>
-                    <div class="text">
-                        <h3>Enter your website address</h3>
-                    </div>
+    <div class="container">
+        <div class="left-side">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.errors }}
+                <div class="header-input">
+                    <div class="icon"><img src="{% static 'icons/megaphone.png' %}" alt="icon"></div>
+                    <input type="text" name="name" placeholder="Name your QR Code...">
                 </div>
-                <div class="enter-url">
-                    <div class="title">
-                        <p>
-                            Type in the website to link with your QR Code
-                        </p>
-                    </div>
-                    <div class="url-input">
-                        <p>Website:</p>
-                        <input type="text" placeholder="http://www.my-website.com" required name="url">
-                    </div>
-                    <div class="title">
-                        <p>Scale</p>
 
-                        <select name="scale" class="header-input">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                        </select>
+                <div class="website-qr" style="height:500px!important;">
+                    <div class="header-title" style="height:20%!important;">
+                        <div class="icon">
+                            <img src="{% static 'icons/design.png' %}" alt="icon">
+                        </div>
+                        <div class="text">
+                            <h3>Enter your website address</h3>
+                        </div>
                     </div>
-                    <div>
-                        <p>Color</p>
-                        <select name="color" class="header-input">
-                            <option value="black">Black</option>
-                            <option value="red">Red</option>
-                            <option value="blue">Blue</option>
-                            <option value="green">Green</option>
-                            <option value="yellow">Yellow</option>
-                            <option value="orange">Orange</option>
-                            <option value="purple">Purple</option>
-                            <option value="pink">Pink</option>
-                            <option value="brown">Brown</option>
-                            <option value="gray">Gray</option>
-                            <option value="white">White</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <button class="btn btn-success" type="submit">QrCode</button>
-        </form>
-        <a style="margin-left:500px;" class = "btn btn-info" href="{% url 'qrcodes-list' %}">QrList</a>
+                    <div class="enter-url" style="height:80%!important;">
+                        <div class="title">
+                            <p>
+                                Type in the website to link with your QR Code
+                            </p>
+                        </div>
+                        <div class="url-input">
+                            <p>Website:</p>
+                            <input type="text" placeholder="http://www.my-website.com" required name="  ">
+                        </div>
+                        <div class="url-input">
+                            <p>Scale</p>
 
-    </div>
-    <div class="right-side">
-        <div class="right-side-content">
-            <div class="buttons">
-                <button data-id="first-content" class="right-side-btn active">Preview</button>
-               
-            </div>
-            <div id="first-content" class="right-side-second-content active">
-                <div class="header">
-                    <input type="text" placeholder="http://www.my-website.com">
-                </div>
-                <div class="content">
-                    <div class="text">
-                        <p>
-                            Some QR Codes types will show a live preview here but not this one. View and test your QR
-                            Code in the next step!
-                        </p>
+                            <select name="scale" class="header-input">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                        <div class="url-input">
+                            <p>Color</p>
+                            <select name="color" class="header-input">
+                                <option value="black">Black</option>
+                                <option value="red">Red</option>
+                                <option value="blue">Blue</option>
+                                <option value="green">Green</option>
+                                <option value="yellow">Yellow</option>
+                                <option value="orange">Orange</option>
+                                <option value="purple">Purple</option>
+                                <option value="pink">Pink</option>
+                                <option value="brown">Brown</option>
+                                <option value="gray">Gray</option>
+                                <option value="white">White</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-success" style="margin-left:20px!important; width: 45%!important;" type="submit">QrCode</button>
+                        <a style="width: 45%!important;" class="btn btn-info" href="{% url 'qrcodes-list' %}">QrList</a>
                     </div>
-                    <div class="icon"><img src="{% static 'icons/CodyE_PointingLeft.svg' %}" alt="icon"></div>
                 </div>
-            </div>
-            <div id="second-content" class="right-side-second-content">
-                <div class="qr-code-img">
-                    <img src="assets/img/Без%20названия.png" alt="image">
+            </form>
+
+
+        </div>
+        <div class="right-side">
+            <div class="right-side-content">
+                <div class="buttons">
+                    <button data-id="first-content" class="right-side-btn active">Preview</button>
+
                 </div>
-                <div class="qr-code-text">
-                    <h3>Scan this QR Code to preview</h3>
-                    <p>You can customize the design of your
-                        QR Code in the next step.</p>
+                <div id="first-content" class="right-side-second-content active">
+                    <div class="header">
+                        <input type="text" placeholder="http://www.my-website.com">
+                    </div>
+                    <div class="content">
+                        <div class="text">
+                            <p>
+                                Some QR Codes types will show a live preview here but not this one. View and test your
+                                QR
+                                Code in the next step!
+                            </p>
+                        </div>
+                        <div class="icon"><img src="{% static 'icons/CodyE_PointingLeft.svg' %}" alt="icon"></div>
+                    </div>
+                </div>
+                <div id="second-content" class="right-side-second-content">
+                    <div class="qr-code-img">
+                        <img src="assets/img/Без%20названия.png" alt="image">
+                    </div>
+                    <div class="qr-code-text">
+                        <h3>Scan this QR Code to preview</h3>
+                        <p>You can customize the design of your
+                            QR Code in the next step.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<script src="js/main.js"></script>
+    <script src="js/main.js"></script>
 </body>
+
 </html>
 {% endblock %}

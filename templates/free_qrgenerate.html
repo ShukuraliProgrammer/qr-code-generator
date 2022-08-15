@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<center>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="card">
+        <h3 class="card-title">Generate Your QrCode</h3>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <br>
+            <button class="btn btn-primary" type = "submit">generate qr code</button>
+        </form>
+    </div>
+</center>
+<div style="margin-top:70px;">
+    <h3 style="text-align: center;">Go Premium and Generate Profissional QrCode</h3>
+</div>
+<div style="margin-left:110px;"> 
+   
+    <img style="width: 18%;" src="{% static 'img/pre1.jpg' %}">
+    <img style="width: 18%;" src="{% static 'img/pre2.jpg' %}">
+    <img style="width: 18%;" src="{% static 'img/pre3.jpg' %}">
+    <img style="width: 18%;" src="{% static 'img/pre4.jpg' %}">
+    <img style="width: 18%;" src="{% static 'img/pre5.jpg' %}">
+
+</div>
+<div>
+    <a class="btn btn-success"  style="text-align:center;" href="{% url 'login_user' %}">
+        Go Login
+    </a>
+</div>
+{% endblock content %}

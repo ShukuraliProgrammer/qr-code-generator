@@ -1,7 +1,6 @@
 
 from pathlib import Path
 import os
-from re import M
 import django 
 from django.utils.encoding import smart_str 
 django.utils.encoding.smart_text = smart_str
@@ -35,6 +34,7 @@ INSTALLED_APPS = [
     'admin_list_charts',
     'django_user_agents',
     'django_celery_beat',
+    'crispy_forms',
 ]
 
 
@@ -75,6 +75,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'qrcored.wsgi.application'
 
+# CSRF_TRUSTED_ORIGINS = ['https://127.0.0.1']
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -161,7 +162,7 @@ CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'rezamonovshukurali21@gmail.com'
-EMAIL_HOST_PASSWORD = 'paavuttuzozoomyg'
+EMAIL_HOST_PASSWORD = 'daafurcocayeppwd'
 EMAIL_PORT = 587
 
 

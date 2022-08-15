@@ -1,7 +1,8 @@
 
+from operator import mod
 from django.db import models
 import qrcode
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin,Group
 from shutil import copy
 import os
 import png
@@ -9,8 +10,9 @@ from PIL import Image, ImageDraw
 from io import BytesIO
 from django.core.files import File
 import random
-from qrgeneratorv.managers import UserManagar
+from qrgeneratorv.managers import UserManager
 import pyqrcode
+from django.core.mail import send_mail
 DEVICE_TYPES = [
     "mobile",  
     "tablet",
@@ -19,32 +21,46 @@ DEVICE_TYPES = [
     "bot",
     "other"
 ]
-
-
-
 class User(AbstractBaseUser, PermissionsMixin):
-    #tarif = models.ForeignKey('Tariff', on_delete=models.CASCADE, default=1)
-    email = models.CharField(max_length=255, unique=True)
-    phone = models.CharField(max_length=20, null=True, blank=True)
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
+    tariff = models.ForeignKey('Tariff', on_delete=models.CASCADE, related_name='users')
+
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    phone_number = models.CharField(max_length=13, blank=True)
+    email = models.EmailField(max_length=254, unique=True)
+    username = models.CharField(max_length=30, unique=True)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
+
+    objects = UserManager()
+
+    # Required fields
+    data_joined = models.DateField(auto_now_add=True)
+    last_login = models.DateField(auto_now=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)
+
     is_admin = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=True)
-
-
-    objects = UserManagar()
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    is_superadmin = models.BooleanField(default=False)
     def __str__(self):
         return self.email
     
     def save(self, *args, **kwargs):
         password = self.password
         self.set_password(password)
+        send_mail(
+            'This is beat task',
+            f"Assalomu Alaykum {self.first_name} sizni QrCode Generator site ga obuna bulganingiz bilan tabriklaymiz",
+            "rezamonovshukurali21@gmail.com",
+            ["shukurdev2002@gmail.com"],
+            fail_silently=False,
+            )
         super().save(*args, **kwargs)
 
-
+    
 SCALE_OPTIONS = (
     ('1', '1'),
     ('2', '2'),
@@ -85,7 +101,10 @@ class Tariff(models.Model):
     expires_in = models.DurationField('Истекает', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    sms_service = models.IntegerField(verbose_name='Сервис отправки SMS',help_text='Date of SMS Cervice')
+    admin_panel = models.BooleanField(default=False, verbose_name='Админ панель')
+    def __str__(self) -> str:
+        return self.name
     class Meta:
         verbose_name = 'Тариф'
         verbose_name_plural = 'Тарифы'
@@ -95,6 +114,7 @@ class QrCode(models.Model):
         (device_type, device_type) for device_type in DEVICE_TYPES
     ]
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='qrcodes',null=True, blank=True)
+    template = models.OneToOneField('Template', on_delete=models.CASCADE,related_name='qrcodes',null=True, blank=True)
     name = models.CharField(max_length=100, verbose_name='Название QR кода')
     url=models.CharField(max_length=100,verbose_name='URL',null=True,blank=True)
     image=models.FileField(upload_to='qrcode',blank=True,null=True)
@@ -110,24 +130,22 @@ class QrCode(models.Model):
     os = models.IntegerField("OS",default=0,null=True,blank=True)
     mobile = models.IntegerField("Mobile",default=0,null=True,blank=True)
     other_devices = models.IntegerField("Other Devices",default=0,null=True,blank=True)
-    def save(self,*args,**kwargs):
-        print("This is model id ",self.id)
-        qrcode_img = qrcode.make('10.10.1.89:8000/qr-url/{}'.format(self.id))
-        canvas=Image.new("RGB", (300,300),"white")
-        draw=ImageDraw.Draw(canvas)
-        canvas.paste(qrcode_img)
-        buffer=BytesIO()
-        canvas.save(buffer,"PNG")
-        self.image.save(f'image{random.randint(0,9999)}',File(buffer),save=False)
+    # def save(self,*args,**kwargs):
+    #     print("This is model id ",self.id)
+    #     qrcode_img = qrcode.make('10.10.1.89:8000/qr-url/{}'.format(self.id))
+    #     canvas=Image.new("RGB", (300,300),"white")
+    #     draw=ImageDraw.Draw(canvas)
+    #     canvas.paste(qrcode_img)
+    #     buffer=BytesIO()
+    #     canvas.save(buffer,"PNG")
+    #     self.image.save(f'image{random.randint(0,9999)}',File(buffer),save=False)
 
-        canvas.close()
-        super().save(*args,**kwargs)
+    #     canvas.close()
+    #     super().save(*args,**kwargs)
     
     def __str__(self):
         return self.url
-    
-
-
+  
 
 class SocialMediaChannels(models.Model):
     title = models.CharField(max_length=100, verbose_name='Название',default='Название')
@@ -201,4 +219,26 @@ class ForFakeTemplate(models.Model):
         verbose_name = 'Ссылка для шаблона'
         verbose_name_plural = 'Ссылки для шаблона'
 
+
+
+class SMSNotification(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sms_notifications')
+    allscans = models.CharField(max_length=100, verbose_name='Все отсканированные коды')
+    os_enter_count = models.IntegerField("ОС Enter Counts",default=0,null=True,blank=True)
+    mobile_enter_count = models.IntegerField("Мобильный Enter Counts",default=0,null=True,blank=True)
+
+    class Meta:
+        verbose_name = 'СМС оповещение'
+        verbose_name_plural = 'СМС оповещения'
+    
+    def __str__(self):
+        return self.user.email
+
+
+
+class QRCodeFree(models.Model):
+    id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
+    content = models.CharField(max_length=500, verbose_name='Enter text or url')
+    scale = models.CharField(blank = False, null = False, max_length=2, choices=SCALE_OPTIONS, default=5)
+    color = models.CharField(blank = False, null = False, max_length=15, choices=COLOR_OPTIONS, default='black')
     

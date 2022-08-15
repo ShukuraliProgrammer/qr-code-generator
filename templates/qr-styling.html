@@ -1,0 +1,148 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>choose</title>
+    <link rel="stylesheet" href="{% static 'scss/qr-styling.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="modal">
+        <div class="left-side">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="label">
+                    <h2>Enter your URL</h2>
+                    <input type="text" onchange="enterUrl(this.value)" class="urlInput" value="{{ content}}"
+                           placeholder="https://yourUrl.com" required>
+                </div>
+                <div class="label">
+                    <h2>Choose Color</h2>
+                    <input onchange="chooseColor(this.value)" type="color" class="color">
+                </div>
+                <div class="label" class="qrCodeLabel">
+                    <h2>Choose Style</h2>
+                    <button type="button" onclick="chooseStyle('square', 'square')" class="styleQrCode">
+                        <img src="{% static 'img/style1.jpg' %}" alt="img">
+                    </button>
+                    <button type="button" onclick="chooseStyle('classy', 'square')" class="styleQrCode">
+                        <img src="{% static 'img/style2.jpg' %}" alt="img">
+                    </button>
+                    <button type="button" onclick="chooseStyle('rounded','extra-rounded')" class="styleQrCode">
+                        <img src="{% static 'img/style3.jpg' %}" alt="img">
+                    </button>
+                    <button type="button" onclick="chooseStyle('classy-rounded','extra-rounded')" class="styleQrCode">
+                        <img src="{% static 'img/style5.jpg' %}" alt="img">
+                    </button>
+                    <button type="button" onclick="chooseStyle('dots','dot')" class="styleQrCode">
+                        <img src="{% static 'img/style6.jpg' %}" alt="img">
+                    </button>
+                </div>
+
+                <div class="label">
+                    <h2>Choose Corners Color</h2>
+                    <input onchange="chooseCornerColor(this.value)" type="color" class="color">
+                </div>
+
+                <div class="label">
+                    <h2>Upload your logo</h2>
+                    <input type="file" onchange="encodeImageFileAsURL(this)"/>
+                </div>
+                <button type="button" onclick="handleSubmit()" class="generateButton">Generate</button>
+                <br> <br>
+                <button type="submit" class="generateButton">Submit</button>
+            </form>
+        </div>
+        <div class="right-side">
+            <div class="qr-code" id="canvas"></div>
+            <h3 class="noContent" id="info">Choose QR Code...</h3>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+<script type="text/javascript">
+
+    let url = '';
+    let color = '#000';
+    let cornerColor = '#000';
+    let style = {
+        first: 'square',
+        second: 'square'
+    };
+    let logo = '';
+
+    function chooseStyle(dots, corners) {
+        style = {
+            first: dots,
+            second: corners
+        }
+        console.log(style)
+    }
+
+    function chooseColor(value) {
+        color = value
+        console.log(color)
+    }
+
+    function chooseCornerColor(value) {
+        cornerColor = value
+        console.log(cornerColor)
+    }
+
+    function enterUrl(path) {
+        url = path
+        console.log(url)
+    }
+
+    function encodeImageFileAsURL(element) {
+        var file = element.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            console.log(reader.result)
+            logo = reader.result
+        }
+        reader.readAsDataURL(file);
+
+    }
+
+    function handleSubmit() {
+        const qrCode = new QRCodeStyling({
+            width: 300,
+            height: 300,
+            type: "canvas",
+            data: url,
+            image: logo,
+            dotsOptions: {
+                type: style.first,
+                color: color
+            },
+            imageOptions: {
+                imageSize: 0.5,
+                crossOrigin: "anonymous",
+                margin: 1
+            },
+            cornersSquareOptions: {
+                type: style.second,
+                color: cornerColor
+            },
+            cornersDotOptions: {
+                type: style.second,
+                color: cornerColor
+            }
+        });
+        canvas.innerHTML = "";
+        qrCode.append(document.getElementById("canvas"))
+
+    }
+
+</script>
+</body>
+</html>

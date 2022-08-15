@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+
+<br><br><br><br>
+
+    <center>
+        <img src="/static/{{qrcode.id}}.png">
+        <br>
+        <button>
+            <a href="/static/{{qrcode.id}}.png" download>
+                QR Kodu Indir  
+            </a>
+        </button>
+    </center>
+    <div style="margin-top:70px;">
+        <h3 style="text-align: center;">Go Premium and Generate Profissional QrCode</h3>
+    </div>
+    <div style="margin-left:110px;"> 
+       
+        <img style="width: 18%;" src="{% static 'img/pre1.jpg' %}">
+        <img style="width: 18%;" src="{% static 'img/pre2.jpg' %}">
+        <img style="width: 18%;" src="{% static 'img/pre3.jpg' %}">
+        <img style="width: 18%;" src="{% static 'img/pre4.jpg' %}">
+        <img style="width: 18%;" src="{% static 'img/pre5.jpg' %}">
+    
+    </div>
+    <div>
+        <a class="btn btn-success"  style="text-align:center;" href="{% url 'login_user' %}">
+            Go Login
+        </a>
+    </div>
+{% endblock content %}
