@@ -7,6 +7,9 @@
 <div class="container">
   <div class="left-side">
       <div class="left-side-content">
+        <div class="title">
+            <a href="{% url 'home' %}">QrCode Generate</a>
+        </div>
           <div class="title">
               <span></span>
               <p>Dynamic Codes</p>
@@ -66,8 +69,8 @@
   </div>
 </div>
 <div class="next-button" style=" display:flex; justify-content: space-evenly!important; text-align: center;">
-  <a class="btn-next" style="font-size: 25px; display: flex; justify-content: center; align-items: center; text-decoration: none;" href="{% url 'qrcodes-list' %}">Qrcodes List</a>
-  <a href="#" class="btn-next" style="font-size: 25px; display: flex; justify-content: center; align-items: center; background-color:red; text-decoration: none;"> LogOut </a>
+  <a href="{% url 'qrcodes-list' %}" class="btn-next" style="font-size: 25px; display: flex; justify-content: center; align-items: center; text-decoration: none;">Qrcodes List</a>
+  <a href="{% url 'logoutView' %}" class="btn-next" style="font-size: 25px; display: flex; justify-content: center; align-items: center; background-color:red; text-decoration: none;"> LogOut </a>
 </div>
 
 <script>

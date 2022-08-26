@@ -7,7 +7,7 @@ from admin_list_charts.admin import ListChartMixin
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('email', 'username', 'first_name', 'last_name', 'is_staff','is_active','is_superuser', 'created_date', 'modified_date')
+    list_display = ('email','first_name', 'last_name', 'is_staff','is_active','is_superuser', 'created_date', 'modified_date')
 @admin.register(QrCode)
 class QrCodeAdmin(ListChartMixin, admin.ModelAdmin):
     date_hierarchy = 'created_at'

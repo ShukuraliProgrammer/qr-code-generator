@@ -22,16 +22,18 @@ DEVICE_TYPES = [
     "other"
 ]
 class User(AbstractBaseUser, PermissionsMixin):
-    tariff = models.ForeignKey('Tariff', on_delete=models.CASCADE, related_name='users')
+    tariff = models.ForeignKey('Tariff', on_delete=models.CASCADE, related_name='users',default=1)
 
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     phone_number = models.CharField(max_length=13, blank=True)
     email = models.EmailField(max_length=254, unique=True)
-    username = models.CharField(max_length=30, unique=True)
+    
+    is_staff = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
+    REQUIRED_FIELDS = []
 
     objects = UserManager()
 
@@ -41,16 +43,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
 
-    is_admin = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
-    is_superadmin = models.BooleanField(default=False)
     def __str__(self):
         return self.email
     
     def save(self, *args, **kwargs):
-        password = self.password
-        self.set_password(password)
+       
         send_mail(
             'This is beat task',
             f"Assalomu Alaykum {self.first_name} sizni QrCode Generator site ga obuna bulganingiz bilan tabriklaymiz",
@@ -75,16 +72,16 @@ SCALE_OPTIONS = (
 )
 
 COLOR_OPTIONS = (
-    ('black', 'siyah'),
-    ('red', 'kırmızı'),
-    ('blue', 'mavi'),
-    ('green', 'yeşil'),
-    ('brown', 'kahverengi'),
-    ('purple', 'mor'),
-    ('pink', 'pembe'),
-    ('yellow', 'sarı'),
-    ('grey', 'gri'),
-    ('light_blue', 'açık mavi'),
+    ('black', 'black'),
+    ('red', 'red'),
+    ('blue', 'blue'),
+    ('green', 'green'),
+    ('brown', 'brown'),
+    ('purple', 'purple'),
+    ('pink', 'pink'),
+    ('yellow', 'yellow'),
+    ('grey', 'grey'),
+    ('light_blue', 'light_blue'),
 )
 
 OUTPUT_OPTIONS = (
@@ -97,12 +94,15 @@ OUTPUT_OPTIONS = (
 
 class Tariff(models.Model):
     name = models.CharField(max_length=100, verbose_name='Название тарифа')
-    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
-    expires_in = models.DurationField('Истекает', null=True, blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена', help_text="Ценa в долларах")
+    expires_in = models.DurationField('Истекает', null=True, blank=True,help_text="по дням")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     sms_service = models.IntegerField(verbose_name='Сервис отправки SMS',help_text='Date of SMS Cervice')
     admin_panel = models.BooleanField(default=False, verbose_name='Админ панель')
+    editing_count = models.IntegerField(verbose_name='Количество редактирований', default=0)
+    scan_count = models.IntegerField(verbose_name='Количество сканирований',help_text='Count of Scan',blank = True, null = True)
+    creation_count = models.IntegerField(verbose_name='Количество созданий',help_text='Count of Creation',default= 0)
     def __str__(self) -> str:
         return self.name
     class Meta:

@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django_user_agents',
     'django_celery_beat',
     'crispy_forms',
+    'rest_framework',
 ]
 
 

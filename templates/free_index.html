@@ -5,11 +5,11 @@
 <br><br><br><br>
 
     <center>
-        <img src="/static/{{qrcode.id}}.png">
+        <img src="/static/qr_free_images/{{qrcode.id}}.png">
         <br>
         <button>
-            <a href="/static/{{qrcode.id}}.png" download>
-                QR Kodu Indir  
+            <a href="/static/qr_free_images/{{qrcode.id}}.png" download>
+                Download Qr code 
             </a>
         </button>
     </center>
@@ -26,8 +26,6 @@
     
     </div>
     <div>
-        <a class="btn btn-success"  style="text-align:center;" href="{% url 'login_user' %}">
-            Go Login
-        </a>
+        <img style="width: 100%;" src="{% static 'img/premiumimg.jpg' %}">
     </div>
 {% endblock content %}
