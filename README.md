@@ -10,5 +10,5 @@ Commands for run a Project
 
 4. python manage.py runserver
 
-# To create superuser
+## To create superuser
 5. python manage.py createsuperuser
