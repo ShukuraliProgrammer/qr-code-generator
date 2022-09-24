@@ -12,8 +12,6 @@ class GenerateQRForm(forms.ModelForm):
             'color'
         ]
 
-
-
 class GenerateQRFree(forms.ModelForm):
     class Meta:
         model = QRCodeFree
@@ -22,10 +20,6 @@ class GenerateQRFree(forms.ModelForm):
             'scale',
             'color'
         ]
-
-
-
-
 
 
 class TemplateForm(forms.ModelForm):
@@ -41,7 +35,6 @@ class TemplateForm(forms.ModelForm):
 
 
 class UserForm(UserCreationForm):
-    
     class Meta:
         model = User
         fields = ('email', 'password1', 'password2')
@@ -51,6 +44,7 @@ class UserForm(UserCreationForm):
             'password2': forms.PasswordInput(attrs={'class': 'form-control'}),
         }
 
+        
 class UserLoginForm(forms.Form):
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))

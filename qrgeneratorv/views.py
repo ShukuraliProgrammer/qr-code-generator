@@ -87,7 +87,8 @@ def webiste_url_create(request):
     context={}
     user_client = request.user
     user_tariff = user_client.tariff
-    if request.method == "POST" and user_tariff == 'Started':
+
+    if request.method == 'POST' and user_tariff.name == 'Started':
         count_qrcode = QrCode.objects.filter(user=user_client).count()
         if count_qrcode <= 2:
             form = GenerateQRForm(request.POST)
@@ -131,7 +132,7 @@ def webiste_url_create(request):
                 return redirect('website_url_create')
         else:
             return redirect('website_url_create')
-    elif request.method == "POST" and user_tariff == 'Professional':
+    elif request.method == "POST" and user_tariff.name == 'Professional':
         count_qrcode = QrCode.objects.filter(user=user_client).count()
         if count_qrcode <= 50:
             form = GenerateQRForm(request.POST)
@@ -175,7 +176,7 @@ def webiste_url_create(request):
                 return redirect('website_url_create')
         else:
             return redirect('website_url_create')
-    elif request.method == "POST" and user_tariff == 'Advanced':
+    elif request.method == "POST" and user_tariff.name == 'Advanced':
         count_qrcode = QrCode.objects.filter(user=user_client).count()
         if count_qrcode <= 250:
             form = GenerateQRForm(request.POST)
@@ -223,9 +224,9 @@ def webiste_url_create(request):
     context = {'form': GenerateQRForm()}
     return render(request,"tmp_website.html",context=context)
 
-@login_required(login_url='login_user')
+
 def qr_url(request,pk):
-    user_qrcode = request.user
+    user_qrcode = QrCode.objects.get(id=pk).user
     user_tariff = user_qrcode.tariff
     qr_code=QrCode.objects.get(id=pk)
     qr_code.url_counter += 1
@@ -236,12 +237,12 @@ def qr_url(request,pk):
     else:
         qr_code.other += 1
     qr_code.save()
-    if user_tariff == 'Started':
+    if user_tariff.name == 'Started':
         if qr_code.url_counter <= 10000:
             return redirect(qr_code.url)
         else:
             return ValueError("You don't have permission to view this page")
-    elif user_tariff == 'Professional' or user_tariff == 'Advanced':
+    elif user_tariff.name == 'Professional' or user_tariff.name == 'Advanced':
         return redirect(qr_code.url)
     return redirect('qrcodes-list')
 
@@ -257,7 +258,7 @@ def tmp_social_new_create(request):
             if request.FILES:
                 form.instance.image = request.FILES['image']
             TMP = form.save()
-            print("Template", TMP)
+        
             if form.instance.url1:
                 ForFakeTemplate.objects.create(
                     template=form.instance,
@@ -305,7 +306,7 @@ def tmp_social_new_create(request):
             else:
                 qr_color = (0, 0, 0, 255)
             TMP.save()
-            print(TMP.id)
+     
             qr_code =pyqrcode.create('10.10.1.89:8000/phone-detail/{}'.format(TMP.id))
             qr_code.png("{}.png".format(TMP.id), scale=TMP.scale, module_color=qr_color)
             copy("{}.png".format(TMP.id), "media/qrcode/")
@@ -319,7 +320,7 @@ def tmp_social_new_create(request):
             QR.name = TMP.qrname
             QR.template = form.instance
             QR.save()
-            print("this is QR",QR)
+          
            # QrCode.objects.create(url=f'/phone-detail/{TMP.id}', image =QR.image , name=TMP.qrname, user=request.user)
             return redirect('qr_style')
         return redirect('template-list')
@@ -331,9 +332,9 @@ def tmp_social_new_create(request):
 
 def phoneDetailViews(request,pk):
     qr_code=Template.objects.get(id=pk)
-    print(qr_code)
+
     qrcode1 = QrCode.objects.get(template=qr_code)
-    print(qr_code)
+
     qrcode1.url_counter += 1
     qrcode1.save()
     return render(request,"mobile-tmp-detail.html",{'qr':qr_code})
