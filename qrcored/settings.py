@@ -1,9 +1,9 @@
-
 from pathlib import Path
 import os
 import django 
 from django.utils.encoding import smart_str 
 django.utils.encoding.smart_text = smart_str
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,7 +23,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'rest_framework',
 ]
-
 
 CACHES = {
     'default': {
@@ -55,7 +54,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware',
 ]
-
 ROOT_URLCONF = 'qrcored.urls'
 
 TEMPLATES = [
@@ -76,7 +74,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'qrcored.wsgi.application'
 
-# CSRF_TRUSTED_ORIGINS = ['https://127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://127.0.0.1']
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -162,8 +160,8 @@ CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'rezamonovshukurali21@gmail.com'
-EMAIL_HOST_PASSWORD = 'daafurcocayeppwd'
+EMAIL_HOST_USER = 'shukurdev2002@gmail.com'
+EMAIL_HOST_PASSWORD = 'cbvisbzxpteduqtf'
 EMAIL_PORT = 587
 
 

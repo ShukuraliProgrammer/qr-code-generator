@@ -13,6 +13,7 @@ import random
 from qrgeneratorv.managers import UserManager
 import pyqrcode
 from django.core.mail import send_mail
+from django.utils.safestring import mark_safe
 DEVICE_TYPES = [
     "mobile",  
     "tablet",
@@ -21,6 +22,7 @@ DEVICE_TYPES = [
     "bot",
     "other"
 ]
+
 class User(AbstractBaseUser, PermissionsMixin):
     tariff = models.ForeignKey('Tariff', on_delete=models.CASCADE, related_name='users',default=1)
 
@@ -51,8 +53,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         send_mail(
             'This is beat task',
             f"Assalomu Alaykum {self.first_name} sizni QrCode Generator site ga obuna bulganingiz bilan tabriklaymiz",
-            "rezamonovshukurali21@gmail.com",
-            ["shukurdev2002@gmail.com"],
+            "shukurdev2002@gmail.com",
+            ["shukuralijob@gmail.com"],
             fail_silently=False,
             )
         super().save(*args, **kwargs)
@@ -145,7 +147,10 @@ class QrCode(models.Model):
     
     def __str__(self):
         return self.url
-  
+    def admin_photo(self):
+        return mark_safe('<img src="{}" width="100" />'.format(self.image.url))
+    admin_photo.short_description = 'QR Code'
+    admin_photo.allow_tags = True
 
 class SocialMediaChannels(models.Model):
     title = models.CharField(max_length=100, verbose_name='Название',default='Название')

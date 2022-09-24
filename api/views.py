@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 from rest_framework import generics
 from qrgeneratorv.models import QrCode
 from api.serializers import QrCodeSerializer
