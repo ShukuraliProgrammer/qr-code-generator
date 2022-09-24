@@ -8,7 +8,10 @@ Commands for run a Project
 
 3. pip install -r requirements.txt 
 
-4. python manage.py runserver
+4. python manage.py migrate
+
+5. python manage.py runserver
 
 ## To create superuser
-5. python manage.py createsuperuser
+6. python manage.py createsuperuser
+
