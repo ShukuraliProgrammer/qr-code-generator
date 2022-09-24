@@ -20,6 +20,7 @@ django-admincharts==0.4.0
 django-bower==5.2.0
 django-celery-beat==2.3.0
 django-crispy-forms==1.14.0
+django-jazzmin==2.5.0
 django-multiselectfield==0.1.12
 django-nvd3==0.9.7
 django-thumbnails==0.7.0
@@ -57,3 +58,4 @@ user-agents==2.2.0
 vine==5.0.0
 wcwidth==0.2.5
 wrapt==1.14.1
+
