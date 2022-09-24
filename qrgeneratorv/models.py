@@ -49,7 +49,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
     
     def save(self, *args, **kwargs):
-       
+        
         send_mail(
             'This is beat task',
             f"Assalomu Alaykum {self.first_name} sizni QrCode Generator site ga obuna bulganingiz bilan tabriklaymiz",
@@ -57,6 +57,9 @@ class User(AbstractBaseUser, PermissionsMixin):
             ["shukuralijob@gmail.com"],
             fail_silently=False,
             )
+        
+        password = self.password
+        self.set_password(password)
         super().save(*args, **kwargs)
 
     
