@@ -2,7 +2,7 @@
 
 Commands for run a Project
 
-1. git clone project_git_repo
+1. git clone https://github.com/ShukuraliProgrammer/qr-code-generator.git
 
 2. python3 -m venv env
 
